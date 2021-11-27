@@ -1,9 +1,10 @@
 #include <iostream>
+#include <chrono>
 using namespace std;
 int main()
 {
     int array[2][100], n, w, i, curw, used[100], maxi = -1, totalprofit = 0;
-
+    auto start = std::chrono::high_resolution_clock::now();
     cout << "Enter number of objects: ";
     cin >> n;
 
@@ -52,7 +53,9 @@ int main()
             totalprofit += ((array[1][maxi] / array[0][maxi]) * (array[0][maxi] + curw));
         }
     }
-
+    auto end = std::chrono::high_resolution_clock::now();
     cout << "\nBags filled with objects worth: " << totalprofit;
+    double elapsed_time = double(std::chrono::duration_cast<std ::chrono::nanoseconds>(end - start).count());
+    std::cout << " \nElapsed time : " << elapsed_time /1e9 << " ns " << std::endl;
     return 0;
 }

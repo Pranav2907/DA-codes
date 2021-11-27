@@ -1,4 +1,5 @@
 #include <iostream>
+#include <chrono>
 using namespace std;
 int main()
 {
@@ -26,7 +27,7 @@ int main()
     {
         for (j = 0; j < 2; j++)
         {
-            cout << a[i][j]<<"\t";
+            cout << a[i][j] << "\t";
         }
         cout << "\n";
     }
@@ -35,10 +36,11 @@ int main()
     {
         for (j = 0; j < 2; j++)
         {
-            cout << b[i][j]<<"\t";
+            cout << b[i][j] << "\t";
         }
         cout << "\n";
     }
+    auto start = std::chrono::high_resolution_clock::now();
     m1 = (a[0][0] + a[1][1]) * (b[0][0] + b[1][1]);
     m2 = (a[1][0] + a[1][1]) * b[0][0];
     m3 = a[0][0] * (b[0][1] - b[1][1]);
@@ -55,9 +57,12 @@ int main()
     {
         for (j = 0; j < 2; j++)
         {
-            cout << c[i][j]<<"\t";
+            cout << c[i][j] << "\t";
         }
         cout << "\n";
     }
+    auto end = std::chrono::high_resolution_clock::now();
+    double elapsed_time = double(std::chrono::duration_cast<std ::chrono::nanoseconds>(end - start).count());
+    std::cout << " \nElapsed time : " << elapsed_time / 1e9  << " ns" << std::endl;
     return 0;
 }

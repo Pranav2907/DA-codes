@@ -1,4 +1,5 @@
 #include <iostream>
+#include <chrono>
 using namespace std;
 
 void merge(int arr[], int l, int m, int r, int size)
@@ -77,13 +78,15 @@ int main()
         cout << myarray[i] << " ";
     }
     cout << endl;
+    auto start = std::chrono::high_resolution_clock::now();
     mergeSort(myarray, 0, (size - 1), size);
-
+    auto end = std::chrono::high_resolution_clock::now();
+    double elapsed_time = double(std::chrono::duration_cast<std ::chrono::milliseconds>(end - start).count());
     cout << "After Sorting" << endl;
     for (int i = 0; i < size; i++)
     {
         cout << myarray[i] << " ";
     }
-
+    std::cout << " \nElapsed time :" << elapsed_time  << " ms" << std::endl;
     return 0;
 }

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <climits>
+#include <chrono>
 using namespace std;
 
 void findMinAndMax(int arr[], int low, int high, int &min, int &max)
@@ -58,14 +59,24 @@ void findMinAndMax(int arr[], int low, int high, int &min, int &max)
 
 int main()
 {
-    int arr[] = {12,3,5,736,97,2,4};
-    int n = sizeof(arr) / sizeof(arr[0]);
+    cout << "Enter the size of array: " << endl;
+    int size = 0;
+    cin >> size;
+    int array[size];
+
+    cout << "Enter " << size << "integers in any order : " << endl;
+    for (int i = 0; i < size; i++)
+    {
+        cin >> array[i];
+    }
     int max = INT_MIN, min = INT_MAX;
-
-    findMinAndMax(arr, 0, n - 1, min, max);
-
+    auto start = std::chrono::high_resolution_clock::now();
+    findMinAndMax(array, 0, size - 1, min, max);
+    auto end = std::chrono::high_resolution_clock::now();
+    double elapsed_time = double(std::chrono::duration_cast<std ::chrono::milliseconds>(end - start).count());
     cout << "The minimum array element is " << min << endl;
     cout << "The maximum array element is " << max;
+    std::cout << "\nElapsed time : " << elapsed_time  << " ns " << std::endl;
 
     return 0;
 }
