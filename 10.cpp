@@ -97,14 +97,24 @@ int knapsack(int W, Item arr[], int n)
 
 int main()
 {
-    int W = 10;
-    Item arr[] = {{5.1, 41}, {4, 60}, {1, 130}, {5.23, 15}, {3.9, 90}};
-    int n = sizeof(arr) / sizeof(arr[0]);
+    int n, w;
+    Item array[100];
+    cout << "Enter number of objects: ";
+    cin >> n;
 
+    cout << "Enter the weight of the knapsack: ";
+    cin >> w;
+
+    cout << "Enter first weight and then value " << endl;
+
+    for (int i = 0; i < n; i++)
+    {
+        cin >> array[i].weight >> array[i].value;
+    }
     auto start = std::chrono::high_resolution_clock::now();
 
     cout << "Maximum possible profit = "
-         << knapsack(W, arr, n) << endl;
+         << knapsack(w, array, n) << endl;
 
     auto end = std::chrono::high_resolution_clock::now();
     double elapsed_time = double(std::chrono::duration_cast<std ::chrono::nanoseconds>(end - start).count());
